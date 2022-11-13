@@ -1,0 +1,127 @@
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--maxWidthContainer);
+  min-height: var(--minWidthCenterPart);
+  height: 80vh;
+  min-height: 600px;
+  max-height: 1000px;
+}
+
+:root {
+  --maxWidthContainer: 1200px;
+  --minWidthContainer: 800px;
+  --timerLine: 11s;
+  /* --timerLine: 0s; */
+  --leftPartWidth: 33.33%;
+  --timerHeartMove: 8s;
+  --bigHeartX: 148.5px;
+}
+
+.left-part {
+  max-width: var(--leftPartWidth);
+}
+
+.center-part {
+  max-width: calc(100% - var(--leftPartWidth));
+}
+
+.center-part .heart {
+  width: 3rem;
+  animation: heartMove var(--timerHeartMove) forwards infinite linear;
+  transform: translateY(-50%);
+  opacity: 0;
+  z-index: 0;
+}
+
+.center-part .heart1 {
+  top: calc(50% - 5rem);
+  left: 0;
+  animation-delay: calc(var(--timerLine) + 1s);
+}
+.center-part .heart2 {
+  top: calc(50% - 8rem);
+  left: 40px;
+  animation-delay: calc(var(--timerLine) + 4s);
+}
+.center-part .heart3 {
+  top: calc(50% - 9rem);
+  left: -20px;
+  animation-delay: calc(var(--timerLine) + 7s);
+}
+
+.bigHeart img {
+  position: absolute;
+  top: 90px;
+  right: 0;
+  opacity: 0;
+  width: 23%;
+  height: 20%;
+  z-index: 2;
+  animation: heartBeat 5s alternate backwards infinite;
+  animation-delay: calc(var(--timerLine) + var(--timerHeartMove) + 1s);
+}
+.footer-top {
+  height: 4px;
+
+  animation: rise var(--timerLine) alternate forwards linear;
+}
+
+.footer-bottom {
+  height: 4px;
+  animation: rise var(--timerLine) alternate forwards linear;
+  animation-delay: calc(var(--timerLine) + 1s);
+}
+
+@keyframes rise {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100vw;
+  }
+}
+
+@keyframes heartMove {
+  0% {
+    left: 0;
+    opacity: 0.1;
+  }
+  65% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    top: 7rem;
+    transform: translateX(calc(var(--minWidthContainer) - var(--bigHeartX)));
+  }
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
+}
